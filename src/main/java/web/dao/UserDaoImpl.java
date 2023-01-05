@@ -1,6 +1,5 @@
 package web.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
@@ -30,7 +29,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void deleteUser(Long id) {
+    public void deleteUser(Integer id) {
         User user = entityManager.find(User.class, id);
 
         if (user != null) {
@@ -39,12 +38,12 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    @Override
-    public void deleteUsers() {
-        TypedQuery<User> listQuery = entityManager.createQuery("select u from User u", User.class);
-
-        listQuery.getResultList().forEach(entityManager::remove);
-    }
+//    @Override
+//    public void deleteUsers() {
+//        TypedQuery<User> listQuery = entityManager.createQuery("select u from User u", User.class);
+//
+//        listQuery.getResultList().forEach(entityManager::remove);
+//    }
 
     @Transactional(readOnly = true)
     @Override
@@ -54,7 +53,7 @@ public class UserDaoImpl implements UserDao {
 
     @Transactional(readOnly = true)
     @Override
-    public User getUserById(Long id) {
+    public User getUserById(Integer id) {
         return entityManager.find(User.class, id);
     }
 }

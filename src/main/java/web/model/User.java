@@ -1,5 +1,6 @@
 package web.model;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
@@ -8,10 +9,12 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
+@Data
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "name")
     @Size(min = 3, max = 50, message = "Name length should be between 3 and 50 characters")
@@ -20,18 +23,18 @@ public class User {
     @Column(name = "profession")
     private String profession;
 
-    @Column(name = "avatar_url")
+    /*@Column(name = "avatar_url")
     @URL(message = "Provide valid avatar URL")
     private String avatarURL;
 
     @Column(name = "has_brains")
-    private boolean hasBrains = false;
+    private boolean hasBrains = false;*/
 
     @Column(name = "age")
     @Min(value = 1, message = "Minimal age is 1")
     private int age;
 
-    public User() {
+    /*public User() {
     }
 
     public User(String name, String profession, String avatarURL, boolean hasBrains, int age) {
@@ -94,5 +97,5 @@ public class User {
     public String toString() {
         String pattern = "Пользователь - '%s', id - %s\nПрофессия - '%s'\nУмный? - %s\nВозраст - %d\nСтеснительный? - %s}";
         return pattern.formatted(name, id, profession, hasBrains ? "yes" : "not much", age, avatarURL == null || avatarURL.isEmpty() ? "yes" : "вряд ли");
-    }
+    }*/
 }

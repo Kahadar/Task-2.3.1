@@ -11,16 +11,48 @@
         There isn't any user yet, but...
         you can <a href="/users/create">create</a> one
     </h3>
-    <th:block th:if="${users.size() > 0}" th:each="user : ${users}">
-        <img style="width: 12%;
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Profession</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="user:${users}">
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getProfession()}"></td>
+            <td>
+<!--                <a th:href="@{/users/delete(id=${user.getId()})}"-->
+<!--                   class="btn btn-danger">Delete</a>-->
+                <a th:href="@{/users/edit(id=${user.getId()})}"
+                   class="btn btn-primary">Edit</a>
+                <form th:method="POST" th:action="@{'/users/delete?id=' + ${user.getId()}}">
+                    <button
+                            style="color: red"
+                            onclick="return confirm('Are you sure?')"
+                            type="submit">
+                        Delete
+                    </button>
+                </form>
+            </td>
+
+        </tr>
+   <!-- <th:block th:if="${users.size() > 0}" th:each="user : ${users}">
+       &lt;!&ndash; <img style="width: 12%;
         border: 3px solid #a28b8b;
         border-radius: 24px;"
              th:src="${user.getAvatarURL() != null && !user.getAvatarURL().isEmpty() ? user.getAvatarURL() : ''}"
-             alt="user profile avatar">
+             alt="user profile avatar">&ndash;&gt;
         <div th:text="'I\'m ' + ${user.getName()}"/>
-        <a th:href="@{/users/{id}(id=${user.getId()})}">-> More... <-</a>
-        <hr>
-    </th:block>
+
+
+        &lt;!&ndash; <a th:href="@{/users/{id}(id=${user.getId()})}">-> More... <-</a>&ndash;&gt;
+&lt;!&ndash;        <hr>&ndash;&gt;
+
+    </th:block>-->
+
+    </table>
     <a href="/users/create" th:if="${users.size() > 0}">Create NEW</a>
 
 </div>
