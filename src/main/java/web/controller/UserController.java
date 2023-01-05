@@ -28,12 +28,6 @@ public class UserController {
         return "index";
     }
 
-//    @GetMapping("/{id}")
-//    public String printUserProfile(@PathVariable("id") Integer id, ModelMap modelMap) {
-//        modelMap.addAttribute("user", userService.getUserById(id));
-//
-//        return "profile";
-//    }
 
     @GetMapping("/create")
     public String printCreateForm(ModelMap modelMap) {
@@ -82,8 +76,4 @@ public class UserController {
         return "redirect:/users";
     }
 
-//    @DeleteMapping("/deleteAll")
-//    public void deleteAllUsers() {
-//        userService.deleteUsers();
-//    }
 }
